@@ -58,6 +58,7 @@ public class ArticleHandler {
     /**
      * Show all article by desc on update time.
      * */
+
     @GetMapping("/showAll")
     public ResultJson showAll() {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), articleRepository.findAllByOrderByUpdatetimeDesc());
@@ -67,6 +68,7 @@ public class ArticleHandler {
      * show all article from a special poster.
      *
      * */
+
     @GetMapping("/showAllByPoster")
     public ResultJson showAllByPoster(@RequestBody Article article) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), articleRepository.findAllByPosteridOrderByUpdatetimeDesc(article.getPosterid()));
