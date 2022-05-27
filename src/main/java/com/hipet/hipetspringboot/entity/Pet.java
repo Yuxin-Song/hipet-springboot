@@ -20,8 +20,8 @@ public class Pet {
     private Date petbirth;
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private boolean petpreg;
+    private Boolean petpreg;
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    private boolean petdeworm;
+    private Boolean petdeworm;
 
 }

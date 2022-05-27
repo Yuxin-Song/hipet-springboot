@@ -27,9 +27,11 @@ public class PetHandler {
         pet1.setPetsex(pet.getPetsex());
         pet1.setPetbreed(pet.getPetbreed());
         pet1.setPetbirth(pet.getPetbirth());
-        pet1.setPetpreg(pet.isPetpreg());
-        pet1.setPetdeworm(pet.isPetdeworm());
+        pet1.setPetpreg(pet.getPetpreg());
+        pet1.setPetdeworm(pet.getPetdeworm());
+
         petRepository.save(pet1);
+
         return ResultJson.returnResult(ResponseStatusCode.CREATED.getStatusCode(), ResponseStatusCode.CREATED.getMsg(), pet1);
     }
 
@@ -53,8 +55,8 @@ public class PetHandler {
                     pet2.setPetsex(pet.getPetsex());
                     pet2.setPetbreed(pet.getPetbreed());
                     pet2.setPetbirth(pet.getPetbirth());
-                    pet2.setPetpreg(pet.isPetpreg());
-                    pet2.setPetdeworm(pet.isPetdeworm());
+                    pet2.setPetpreg(pet.getPetpreg());
+                    pet2.setPetdeworm(pet.getPetdeworm());
                     petRepository.save(pet2);
                     return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), pet2);
                 }
@@ -63,10 +65,18 @@ public class PetHandler {
         return ResultJson.returnResult(ResponseStatusCode.NOT_FOUND.getStatusCode(), ResponseStatusCode.NOT_FOUND.getMsg(), null);
     }
 
+    /**
+     * Show all the pet of the owner.
+     * */
+
     @GetMapping("/showAll")
     public ResultJson show(@RequestBody Pet pet) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), petRepository.findAllByOwnerid(pet.getOwnerid()));
     }
+
+    /**
+     * Show one of the pet's details.
+     * */
 
     @GetMapping("/showOne")
     public ResultJson showOne(@RequestBody Pet pet) {
