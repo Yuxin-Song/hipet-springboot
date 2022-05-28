@@ -67,8 +67,8 @@ public class VaccineHandler {
         return ResultJson.returnResult(ResponseStatusCode.NOT_FOUND.getStatusCode(), ResponseStatusCode.NOT_FOUND.getMsg(), null);
     }
 
-    @PostMapping("/show")
-    public ResultJson show(@RequestBody Vaccine vaccine) {
+    @GetMapping("/show")
+    public ResultJson show(Vaccine vaccine) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), vaccineRepository.findByPetid(vaccine.getPetid()));
     }
 

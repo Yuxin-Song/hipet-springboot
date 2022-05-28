@@ -21,8 +21,8 @@ public class UserHandler {
     String name, phone, pwd;
     Integer id;
 
-    @PostMapping("/login")
-    public ResultJson login(@RequestBody User user) {
+    @GetMapping("/login")
+    public ResultJson login(User user) {
         phone = user.getPhone();
         pwd = user.getPwd();
         User user1 = userRepository.findByPhone(phone);

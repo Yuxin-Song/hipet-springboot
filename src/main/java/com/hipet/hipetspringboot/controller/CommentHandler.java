@@ -22,6 +22,7 @@ public class CommentHandler {
     @PostMapping("/add")
     public ResultJson add(@RequestBody Comment comment) {
         Comment comment1 = new Comment();
+
         comment1.setCommenterid(comment.getCommenterid());
         comment1.setToid(comment.getToid());
         comment1.setContent(comment.getContent());
@@ -63,8 +64,8 @@ public class CommentHandler {
      * Show all comments under an article.
      * */
 
-    @PostMapping("/showAll")
-    public ResultJson showAll(@RequestBody Comment comment) {
+    @GetMapping("/showAll")
+    public ResultJson showAll(Comment comment) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), commentRepository.findAllByToidOrderByUpdatetimeDesc(comment.getToid()));
     }
 
@@ -72,8 +73,8 @@ public class CommentHandler {
      * Show all of someone's comments.
      * */
 
-    @PostMapping("/showAllByCommenter")
-    public ResultJson showAllByCommenter(@RequestBody Comment comment) {
+    @GetMapping("/showAllByCommenter")
+    public ResultJson showAllByCommenter(Comment comment) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), commentRepository.findAllByCommenteridOrderByUpdatetimeDesc(comment.getCommenterid()));
     }
 

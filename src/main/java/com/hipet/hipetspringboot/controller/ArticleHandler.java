@@ -69,8 +69,8 @@ public class ArticleHandler {
      *
      * */
 
-    @PostMapping("/showAllByPoster")
-    public ResultJson showAllByPoster(@RequestBody Article article) {
+    @GetMapping("/showAllByPoster")
+    public ResultJson showAllByPoster(Article article) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), articleRepository.findAllByPosteridOrderByUpdatetimeDesc(article.getPosterid()));
     }
 
@@ -78,8 +78,8 @@ public class ArticleHandler {
      * Show the article called.
      * */
 
-    @PostMapping("/showOne")
-    public ResultJson showOne(@RequestBody Article article) {
+    @GetMapping("/showOne")
+    public ResultJson showOne(Article article) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), articleRepository.findById(article.getArticleid()));
     }
 

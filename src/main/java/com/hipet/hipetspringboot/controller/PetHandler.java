@@ -69,8 +69,8 @@ public class PetHandler {
      * Show all the pet of the owner.
      * */
 
-    @PostMapping("/showAll")
-    public ResultJson show(@RequestBody Pet pet) {
+    @GetMapping("/showAll")
+    public ResultJson show(Pet pet) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), petRepository.findAllByOwnerid(pet.getOwnerid()));
     }
 
@@ -78,8 +78,8 @@ public class PetHandler {
      * Show one of the pet's details.
      * */
 
-    @PostMapping("/showOne")
-    public ResultJson showOne(@RequestBody Pet pet) {
+    @GetMapping("/showOne")
+    public ResultJson showOne(Pet pet) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), petRepository.findById(pet.getPetid()));
     }
 
