@@ -35,7 +35,7 @@ public class PetHandler {
         return ResultJson.returnResult(ResponseStatusCode.CREATED.getStatusCode(), ResponseStatusCode.CREATED.getMsg(), pet1);
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public ResultJson delete(@RequestBody Pet pet) {
         if (petRepository.existsById(pet.getPetid())) {
             petRepository.deleteById(pet.getPetid());
@@ -69,7 +69,7 @@ public class PetHandler {
      * Show all the pet of the owner.
      * */
 
-    @GetMapping("/showAll")
+    @PostMapping("/showAll")
     public ResultJson show(@RequestBody Pet pet) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), petRepository.findAllByOwnerid(pet.getOwnerid()));
     }
@@ -78,7 +78,7 @@ public class PetHandler {
      * Show one of the pet's details.
      * */
 
-    @GetMapping("/showOne")
+    @PostMapping("/showOne")
     public ResultJson showOne(@RequestBody Pet pet) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), petRepository.findById(pet.getPetid()));
     }

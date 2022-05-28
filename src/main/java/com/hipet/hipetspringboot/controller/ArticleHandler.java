@@ -29,7 +29,7 @@ public class ArticleHandler {
         return ResultJson.returnResult(ResponseStatusCode.CREATED.getStatusCode(), ResponseStatusCode.CREATED.getMsg(), article1);
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public ResultJson delete(@RequestBody Article article) {
         if (articleRepository.existsById(article.getArticleid())) {
             articleRepository.deleteById(article.getArticleid());
@@ -69,7 +69,7 @@ public class ArticleHandler {
      *
      * */
 
-    @GetMapping("/showAllByPoster")
+    @PostMapping("/showAllByPoster")
     public ResultJson showAllByPoster(@RequestBody Article article) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), articleRepository.findAllByPosteridOrderByUpdatetimeDesc(article.getPosterid()));
     }
@@ -78,7 +78,7 @@ public class ArticleHandler {
      * Show the article called.
      * */
 
-    @GetMapping("/showOne")
+    @PostMapping("/showOne")
     public ResultJson showOne(@RequestBody Article article) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), articleRepository.findById(article.getArticleid()));
     }

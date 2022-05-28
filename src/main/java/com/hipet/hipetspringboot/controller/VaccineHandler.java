@@ -37,7 +37,7 @@ public class VaccineHandler {
         return ResultJson.returnResult(ResponseStatusCode.CREATED.getStatusCode(), ResponseStatusCode.CREATED.getMsg(), vaccine1);
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public ResultJson delete(@RequestBody Vaccine vaccine) {
         if (vaccineRepository.existsByPetid(vaccine.getPetid())) {
             vaccineRepository.deleteByPetid(vaccine.getPetid());
@@ -67,7 +67,7 @@ public class VaccineHandler {
         return ResultJson.returnResult(ResponseStatusCode.NOT_FOUND.getStatusCode(), ResponseStatusCode.NOT_FOUND.getMsg(), null);
     }
 
-    @GetMapping("/show")
+    @PostMapping("/show")
     public ResultJson show(@RequestBody Vaccine vaccine) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), vaccineRepository.findByPetid(vaccine.getPetid()));
     }

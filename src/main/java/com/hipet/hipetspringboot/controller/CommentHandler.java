@@ -25,15 +25,17 @@ public class CommentHandler {
         comment1.setCommenterid(comment.getCommenterid());
         comment1.setToid(comment.getToid());
         comment1.setContent(comment.getContent());
-        commentRepository.save(comment1);
-        return ResultJson.returnResult(ResponseStatusCode.CREATED.getStatusCode(), ResponseStatusCode.CREATED.getMsg(), comment1);
 
+        commentRepository.save(comment1);
+
+        return ResultJson.returnResult(ResponseStatusCode.CREATED.getStatusCode(), ResponseStatusCode.CREATED.getMsg(), comment1);
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public ResultJson delete(@RequestBody Comment comment) {
         if (commentRepository.existsById(comment.getCommentid())) {
             commentRepository.deleteById(comment.getCommentid());
+
             return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), comment);
         }
         return ResultJson.returnResult(ResponseStatusCode.NOT_FOUND.getStatusCode(), ResponseStatusCode.NOT_FOUND.getMsg(), null);
@@ -47,7 +49,9 @@ public class CommentHandler {
                 Comment comment2 = comment1.get();
                 if (comment2 != null) {
                     comment2.setContent(comment.getContent());
+
                     commentRepository.save(comment2);
+
                     return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), comment2);
                 }
             }
@@ -59,7 +63,7 @@ public class CommentHandler {
      * Show all comments under an article.
      * */
 
-    @GetMapping("/showAll")
+    @PostMapping("/showAll")
     public ResultJson showAll(@RequestBody Comment comment) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), commentRepository.findAllByToidOrderByUpdatetimeDesc(comment.getToid()));
     }
@@ -68,7 +72,7 @@ public class CommentHandler {
      * Show all of someone's comments.
      * */
 
-    @GetMapping("/showAllByCommenter")
+    @PostMapping("/showAllByCommenter")
     public ResultJson showAllByCommenter(@RequestBody Comment comment) {
         return ResultJson.returnResult(ResponseStatusCode.SUCCESS.getStatusCode(), ResponseStatusCode.SUCCESS.getMsg(), commentRepository.findAllByCommenteridOrderByUpdatetimeDesc(comment.getCommenterid()));
     }

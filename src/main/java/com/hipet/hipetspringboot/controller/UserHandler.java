@@ -21,7 +21,7 @@ public class UserHandler {
     String name, phone, pwd;
     Integer id;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResultJson login(@RequestBody User user) {
         phone = user.getPhone();
         pwd = user.getPwd();
@@ -48,7 +48,7 @@ public class UserHandler {
         return ResultJson.returnResult(ResponseStatusCode.NOT_FOUND.getStatusCode(), ResponseStatusCode.NOT_FOUND.getMsg(), null);
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public ResultJson delete(@RequestBody(required = false) User user) {
         if (userRepository.existsByPhone(user.getPhone())) {
             userRepository.delete(user);
