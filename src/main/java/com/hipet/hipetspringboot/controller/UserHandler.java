@@ -71,7 +71,7 @@ public class UserHandler {
             if (user1.isPresent()) {
                 User user2 = user1.get();
                 if (user2 != null) {
-                    if (pwd.equals(user2.getPwd()) && phone.equals(user2.getPhone())) {
+                    if (pwd.equals(user2.getPwd())) {
                         user2.setUsername(name);
                         user2.setPhone(phone);
                         user2.setPwd(pwd);

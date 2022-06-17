@@ -1,5 +1,6 @@
 package com.hipet.hipetspringboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Pet {
     private String petbreed;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date petbirth;
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
